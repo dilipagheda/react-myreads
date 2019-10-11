@@ -10,5 +10,8 @@ export const ShelfDetails = {
 	read: {
 		title: 'Read',
 		id: 'read'
+	},
+	none: {
+		id: 'none'
 	}
 };
