@@ -7,9 +7,12 @@ class BooksList extends Component {
 			<li>
 				<Book
 					key={book.id}
+					bookId={book.id}
+					shelf={book.shelf}
 					backgroundImage={book.imageLinks.thumbnail}
 					title={book.title}
 					authors={book.authors}
+					updateShelf={this.props.updateShelf}
 				/>
 			</li>
 		));
