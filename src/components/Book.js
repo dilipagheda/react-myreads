@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
+import BookCover from './BookCover';
 
 class Book extends Component {
 	getAuthors = (authors) => {
 		return authors.join(',');
 	};
 
+	handleOnChange = (event) => {
+		this.props.updateShelf(this.props.bookId, event.target.value);
+	};
+
 	render() {
 		return (
 			<div className="book">
 				<div className="book-top">
-					<div
-						className="book-cover"
-						style={{
-							width: 128,
-							height: 192,
-							backgroundImage: `url("${this.props.backgroundImage}")`
-						}}
-					/>
+					<BookCover key={this.props.bookId} backgroundImage={this.props.backgroundImage} />
 					<div className="book-shelf-changer">
-						<select>
+						<select value={this.props.shelf} onChange={this.handleOnChange}>
 							<option value="move" disabled>
 								Move to...
 							</option>
