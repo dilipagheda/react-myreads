@@ -1,7 +1,6 @@
 import React from 'react';
 
 const BookCover = (props) => {
-	console.log('Bookcover');
 	return (
 		<div
 			className="book-cover"
