@@ -3,20 +3,21 @@ import BookCover from './BookCover';
 
 class Book extends Component {
 	getAuthors = (authors) => {
-		return authors.join(',');
+		return authors && authors.join(',');
 	};
 
-	handleOnChange = (event) => {
-		this.props.updateShelf(this.props.bookId, event.target.value);
+	handleOnChange = (event, book) => {
+		this.props.updateShelf(book, event.target.value);
 	};
 
 	render() {
+		const { book } = this.props;
 		return (
 			<div className="book">
 				<div className="book-top">
-					<BookCover key={this.props.bookId} backgroundImage={this.props.backgroundImage} />
+					<BookCover key={book.bookId} backgroundImage={book.imageLinks.thumbnail} />
 					<div className="book-shelf-changer">
-						<select value={this.props.shelf} onChange={this.handleOnChange}>
+						<select value={book.shelf} onChange={(event) => this.handleOnChange(event, book)}>
 							<option value="move" disabled>
 								Move to...
 							</option>
@@ -27,8 +28,8 @@ class Book extends Component {
 						</select>
 					</div>
 				</div>
-				<div className="book-title">{this.props.title}</div>
-				<div className="book-authors">{this.getAuthors(this.props.authors)}</div>
+				<div className="book-title">{book.title}</div>
+				<div className="book-authors">{this.getAuthors(book.authors)}</div>
 			</div>
 		);
 	}
