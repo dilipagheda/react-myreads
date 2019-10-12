@@ -13,12 +13,23 @@ class BooksApp extends React.Component {
 		this.state = { books: [] };
 	}
 
-	updateShelf = async (bookId, shelf) => {
+	updateShelf = async (book, shelf) => {
+		const bookId = book.id;
 		const response = await BooksAPI.update({ id: bookId }, shelf);
-		console.log(response);
 
 		this.setState((prevState) => {
-			let books = prevState.books.map((book) => {
+			let prevBooks = prevState.books;
+			let shelfIds = [ ...response.currentlyReading, ...response.read, ...response.wantToRead ];
+			shelfIds.forEach((shelfId) => {
+				const pBook = prevBooks.find((prevBook) => {
+					return prevBook.id === shelfId;
+				});
+				if (!pBook) {
+					prevBooks.push(book);
+				}
+			});
+
+			let books = prevBooks.map((book) => {
 				if (response.currentlyReading.includes(book.id)) {
 					book.shelf = ShelfDetails.currentlyReading.id;
 				} else if (response.read.includes(book.id)) {
@@ -31,6 +42,7 @@ class BooksApp extends React.Component {
 				return book;
 			});
 			books = books.filter((book) => book.shelf !== ShelfDetails.none.id);
+
 			return {
 				books
 			};
@@ -38,9 +50,9 @@ class BooksApp extends React.Component {
 	};
 
 	async componentDidMount() {
-		const books = await BooksAPI.getAll();
+		let books = await BooksAPI.getAll();
+		books = books.filter((book) => book.authors !== undefined && book.imageLinks !== undefined);
 		this.setState({ books });
-		console.log(books);
 	}
 
 	render() {
@@ -52,7 +64,10 @@ class BooksApp extends React.Component {
 						path="/"
 						render={() => <MainPage books={this.state.books} updateShelf={this.updateShelf} />}
 					/>
-					<Route path="/search" component={SearchPage} />
+					<Route
+						path="/search"
+						render={() => <SearchPage books={this.state.books} updateShelf={this.updateShelf} />}
+					/>
 				</div>
 			</Router>
 		);
