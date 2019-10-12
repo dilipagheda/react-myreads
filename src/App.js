@@ -1,9 +1,9 @@
 import React from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import SearchPage from './components/SearchPage';
 import { ShelfDetails } from './helper/ShelfDetails';
-
+import NoMatch from './components/NoMatch';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 
@@ -59,15 +59,18 @@ class BooksApp extends React.Component {
 		return (
 			<Router>
 				<div className="app">
-					<Route
-						exact
-						path="/"
-						render={() => <MainPage books={this.state.books} updateShelf={this.updateShelf} />}
-					/>
-					<Route
-						path="/search"
-						render={() => <SearchPage books={this.state.books} updateShelf={this.updateShelf} />}
-					/>
+					<Switch>
+						<Route
+							exact
+							path="/"
+							render={() => <MainPage books={this.state.books} updateShelf={this.updateShelf} />}
+						/>
+						<Route
+							path="/search"
+							render={() => <SearchPage books={this.state.books} updateShelf={this.updateShelf} />}
+						/>
+						<Route component={NoMatch} />
+					</Switch>
 				</div>
 			</Router>
 		);
