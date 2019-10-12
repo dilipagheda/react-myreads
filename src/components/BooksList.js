@@ -14,6 +14,7 @@ class BooksList extends Component {
 	};
 
 	renderSearchedBooks = () => {
+		if (this.props.result.length === 0) return null;
 		return this.props.result.map((searchedBook) => {
 			const bookOnShelf = this.props.books.find((book) => book.id === searchedBook.id);
 			if (bookOnShelf) {
