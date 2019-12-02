@@ -1,0 +1,12 @@
+{
+	"AWSEBDockerrunVersion": "1",
+	"Image": {
+		"Name": "dilipagheda/myreads",
+		"Update": "true"
+	},
+	"Ports": [
+		{
+			"ContainerPort": "3000"
+		}
+	]
+}
