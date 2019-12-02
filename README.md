@@ -18,6 +18,14 @@ Notes:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
+## Run it via Docker
+- You can pull the public image for this project via https://hub.docker.com/repository/docker/dilipagheda/myreads.  
+- Map port 3000 and then do `docker run dilipagheda/myreads`
+- access it via localhost:3000
+
+## Deployment to AWS
+This project is configured to deploy it to AWS. I have created a Dockerfile to containerize the application and also Dockerrun.aws.json file to deploy to AWS via Elastic Beanstalk. I deployed it and tested that it works. It is not running on AWS at the moment though to avoid billing!
+
 ## File Structure
 ```bash
 ├── CONTRIBUTING.md
