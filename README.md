@@ -26,6 +26,17 @@ Notes:
 ## Deployment to AWS
 This project is configured to deploy it to AWS. I have created a Dockerfile to containerize the application and also Dockerrun.aws.json file to deploy to AWS via Elastic Beanstalk. I deployed it and tested that it works. It is not running on AWS at the moment though to avoid billing!
 
+## Screenshots
+![Image description](https://github.com/dilipagheda/reactnd-project-myreads/blob/master/screenshots/1.png)
+
+![Image description](https://github.com/dilipagheda/reactnd-project-myreads/blob/master/screenshots/2.png)
+
+## Travis CI Build results
+
+!["Travis CI Build results"](https://github.com/dilipagheda/reactnd-project-myreads/blob/master/screenshots/3.png)
+
+
+
 ## File Structure
 ```bash
 ├── CONTRIBUTING.md
