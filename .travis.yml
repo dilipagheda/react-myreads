@@ -12,7 +12,7 @@ deploy:
   provider: elasticbeanstalk
   region: "ap-southeast-2"
   app:  "myreads"
-  env:  "Myreads-env"
+  env:  "Myreads-env-1"
   bucket_name:  "elasticbeanstalk-ap-southeast-2-304346242490"
   bucket_path:  "myreads"
   on:
